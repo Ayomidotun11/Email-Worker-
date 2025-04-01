@@ -13,7 +13,7 @@ A robust Windows Service built with .NET that manages and automates email distri
 - 💾 Database integration for email queue management
 
 ## Technology Stack
-- .NET 6.0+
+- .NET 8.0+
 - Entity Framework Core
 - Microsoft.Extensions.Hosting
 - SMTP Client Integration
