@@ -66,6 +66,7 @@ namespace Email_Worker_Service.Worker
             using var scope = _serviceProvider.CreateScope();
             var databaseService = scope.ServiceProvider.GetRequiredService<IDatabaseService>();
             var emailService = scope.ServiceProvider.GetRequiredService<IEmailService>();
+            var templateService = scope.ServiceProvider.GetRequiredService<IEmailTemplateService>();
 
             try
             {
@@ -91,10 +92,11 @@ namespace Email_Worker_Service.Worker
                     {
                         try
                         {
+                            string emailBody = await templateService.GetWelcomeEmailTemplateAsync(user.Name);
                             var emailMessage = new EmailMessage(
                                 user.Email,
                                 "Welcome to Our Service",
-                                $"<h1>Hello {user.Name}!</h1><p>Welcome to our service. We're excited to have you on board!</p>",
+                                emailBody,
                                 true);
 
                             await emailService.SendEmailAsync(emailMessage);

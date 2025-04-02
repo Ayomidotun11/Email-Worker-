@@ -26,6 +26,7 @@ var host = Host.CreateDefaultBuilder(args)
         // Add Services
         services.AddScoped<IDatabaseService, DatabaseService>();
         services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<IEmailTemplateService, EmailTemplateService>();
 
         // Add Worker
         services.AddHostedService<Email_Worker_Service.Worker.EmailWorker>();
